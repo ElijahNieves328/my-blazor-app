@@ -1,6 +1,6 @@
-@*Elijah Nieves*@
+Elijah Nieves
 
-@*https://devblogs.microsoft.com/aspnet/azure-static-web-apps-with-blazor/*@
+https://devblogs.microsoft.com/aspnet/azure-static-web-apps-with-blazor/
 
 
 # My Website: 

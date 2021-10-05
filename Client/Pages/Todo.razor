@@ -1,0 +1,42 @@
+@page "/todo" 
+@*creates a 'todo' page to be referenced by NavMenu*@
+
+<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
+@*displays a large title "Todo" with a parentheses inclduing the count of unfinished tasks*@
+
+<ul>
+    @foreach (var todo in todos)
+    @*creates a foreach loop
+    for each task in the todo list, do this:*@
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" /> 
+            @*create a checkbox that when checked, sets the task's "isdone" bool to false*@
+            <input @bind="todo.Title" /> 
+            @*adds a field to get/set the task's title through user input*@
+        </li>
+    }
+</ul>
+
+<input placeholder="Something todo" @bind="newTodo" /> 
+@*adds a Ui element to hold the text input which is assigned to newTodo*@
+<button @onclick="AddTodo">Add todo</button>    
+@*adds a UI element (button) to 'submit' the text the user entered, assigning it to newTodo*@
+
+@code {
+    private List<TodoItem> todos = new();   
+    //makes a list of TodoItem objects
+    private string newTodo; 
+    //makes a string to temporarily hold the title of a new Todo object being added
+
+    private void AddTodo()      //a function to add a new todo object to our list
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))    //checks to see if the user has input anything into the "newTodo" string
+        {
+            todos.Add(new TodoItem { Title = newTodo });    
+            //add the new todo to our todo list
+            newTodo = string.Empty;     
+            //clears newTodo since its purpose is only to temporarily hold the title of the new Todo object.
+        }
+    }
+}
